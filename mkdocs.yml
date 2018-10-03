@@ -1,5 +1,15 @@
 site_name: HomelabAAS Documentation
-pages:
+nav:
 - Home: index.md
+- Getting Started: gettingstarted.md
+- Tutorial: tutorial.md
+- Administration: admin.md
+- VM Builds: vmbuilds.md
+- Compute: compute.md
+- Networking: networking.md
+- Storage: storage.md
+- Architecture: architecture.md
+- Helper Containers: containers.md
+- Development: development.md
 - About: about.md
 theme: readthedocs
