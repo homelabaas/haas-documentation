@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mrgeoffrich/mkdocsbuild:latest
+    steps:
+      - checkout
+      - run:
+          name: Check versions and setup CLI
+          command: |
+            python --version
+            pip --version
+            mkdocs --version
+            pip install awscli
+      - run:
+          name: Build site
+          command: mkdocs build
+      - deploy:
+          name: Deploy to S3
+          command: aws s3 cp ./site/ s3://homelabaas-website/ --recursive
