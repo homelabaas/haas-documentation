@@ -17,4 +17,4 @@ jobs:
           command: mkdocs build
       - deploy:
           name: Deploy to S3
-          command: aws s3 cp ./site/ s3://homelabaas-website/ --recursive
+          command: aws s3 cp ./site/ s3://homelabaas-website/docs.homelabaas.io --recursive
