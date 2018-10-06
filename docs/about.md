@@ -9,7 +9,7 @@ Developed and maintained by Geoff Rich <geoff.rich@gmail.com>
 To make changes to these documents:
 
 ```sh
-git clone http://gitlab.com/homelab-devops/homelabaas-website
+git clone http://github.com/homelabaas/haas-documentation
 ```
 
-Use [Mkdocs](https://www.mkdocs.org/) to generate the static assets.
+Uses [Mkdocs](https://www.mkdocs.org/) to generate the static assets.

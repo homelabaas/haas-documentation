@@ -2,7 +2,6 @@ site_name: HomelabAAS Documentation
 nav:
 - Home: index.md
 - Getting Started: gettingstarted.md
-- Tutorial: tutorial.md
 - Administration: admin.md
 - VM Builds: vmbuilds.md
 - Compute: compute.md
