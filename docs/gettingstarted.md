@@ -6,19 +6,31 @@ You just need a machine that can run docker. This includes Docker for Mac, Docke
 
 ## Setting up HaaS
 
+To start up the installation application, run:
+
+```bash
+docker run -v /var/run/docker.sock:/var/run/docker.sock -p 3010:3010 homelabaas/haas-bootstrap
+```
+
+Once the container is up and running, browse to <http://localhost:3010> and step through the installation steps.
+
 The bootstrap application should start up the correct containers and get you up and running with a basic setup. This will start 3 containers for you:
 
 * The HaaS Application itself (homelabaas/haas-application)
 * Minio (minio/minio)
 * Postgres (postgres)
 
-Minio is used as a central store for files throughout the application. Postgres is the database used.
+Minio is used as a central store for files throughout the application, and sample files will be copied from <https://github.com/homelabaas/haas-content> into the Minio store as part of the installation procedure. These files are a great place to start.
+
+Postgres is the database used, which will be automatically populated when the application starts.
 
 ## Configure HaaS
 
 ### Set Application URL
 
-Navigate to the Admin -> Settings page. Here you can configure 3 important items. The first is the URL of this application. This is required so that your VM's know what URL to hit, when calling back to this application. Use the IP address of the machine its running on, on port 3000. For example, if your machine's IP is 10.0.0.1, use `http://10.0.0.1:3000`. Click __Save__.
+Navigate to the Admin -> Settings page. Here you can configure 3 important items. The first is the URL of this application. This is required so that your VM's know what URL to hit, when calling back to this application. Use the IP address of the machine its running on, on port 3000.
+
+For example, if your machine's IP is 10.0.0.1, use `http://10.0.0.1:3000`. Click __Save__.
 
 ### Connect to vcenter
 
@@ -26,11 +38,11 @@ Enter in the vcenter details. The URL is just the IP or domain name of the serve
 
 ### Connect to PowerDNS
 
-The last setting is optional, and you will probably set this up later. This is to provide integration with Power DNS for DNS automation. To set this up, type in the url of the Power DNS API, such as `http://10.0.0.15:8081`. The the API key, and then the domain name that you want all your entries to be stored under.
+This is optional, and you will probably set this up later. This is to provide integration with Power DNS for DNS automation. To set this up, type in the url of the Power DNS API, such as `http://10.0.0.15:8081`. The the API key, and then the domain name that you want all your entries to be stored under.
 
 ### Connect to Minio
 
-Setup Minio settings.
+Configure the application to connect to Minio, by entering in a url. If you are using the bootstrap application, you can enter in your local IP, such as: `http://10.0.0.10:9000` with __testaccesskey__ as the Access Key and __testsecretkey__ as the secret key.
 
 ## HaaS usage: First Steps
 

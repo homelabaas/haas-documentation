@@ -4,7 +4,7 @@ This product will turn your homelab environment into an easy to consume resource
 
 ## Guides
 
-* [Getting Started](gettingstarted.md) - How to get this app up and running, with some great sample steps to get you up and running.
+* [Getting Started](gettingstarted.md) - How to get this app up and running, with some great sample steps to get you started.
 
 ## Application Features
 
