@@ -2,13 +2,7 @@ site_name: HomelabAAS Documentation
 nav:
 - Home: index.md
 - Getting Started: gettingstarted.md
-- Administration: admin.md
-- VM Builds: vmbuilds.md
-- Compute: compute.md
-- Networking: networking.md
-- Storage: storage.md
-- Architecture: architecture.md
-- Helper Containers: containers.md
-- Development: development.md
+- Walkthrough: walkthrough.md
+- Docker Swarm: swarm.md
 - About: about.md
 theme: readthedocs
