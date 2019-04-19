@@ -15,14 +15,14 @@ The main prerequisite to get the VM builds and deployments working are as follow
 
 The installation helper would have populated your minio installation with some initial content. Minio is automatically populated with these contents: <https://github.com/homelabaas/haas-content>. This can be browsed in two ways:
 
-* Directly browse to Minio and log in with the test credentials. This is my default on port 9000, with the credentials __testaccesskey__ as the Access Key and __testsecretkey__ as the secret key.
-* Inside of HaaS, you can navigate to Storage -> Files, and a built in file browser lets you also look at the contents of the Minio store.
+* Directly browse to Minio and log in with the test credentials. This is by default on port 9000, with the credentials __testaccesskey__ as the Access Key and __testsecretkey__ as the secret key.
+* From the HaaS application, you can navigate to Storage -> Files, and a built in file browser lets you also look at the contents of the Minio store.
 
 Verify that files exist as expected before continuing.
 
 ## Build your base Ubuntu 18.04 machine
 
-This step involves performing your first VM build, which will install Ubuntu 18.04 and patch it, using the ubuntu ISO file.
+This step involves performing your first VM build, which will automatically install Ubuntu 18.04 and patch it, using the ubuntu ISO file.
 
 ### Create a new Build Configuration
 
@@ -34,11 +34,11 @@ Give the build config a name, such as "Ubuntu 18.04 Base", and the VM a name, su
 
 Type in an SSH username and password, which will be your root user. Remember these credentials.
 
-Leave the "Append Build Number ticked".
+Leave the "Append Build Number" ticked.
 
 On the Host dropdown, select which VMWare host you would like to perform the build on. If the host is a member of a cluster that box will automatically populate. If it is not, leave it blank.
 
-Select the datastore for that host which to store the VM on. The select the VM network.
+Select the datastore for that host which to store the VM on. Then select the VM network.
 
 Last but not least, select the datastore which the ISO file resides on. The file dropdown will automatically populate with all the .ISO files inside that datastore for you. Select the Ubuntu 18.04 ISO file from this dropdown.
 
@@ -66,7 +66,7 @@ Keep Append build number ticked.
 
 Select the VM Host and datastore to store the VM on, and the VM network.
 
-Finally, from the "Template Build" dropdown, select Ubuntu 18.04 Base". This means this build takes the latest VM build from that configuration as the input.
+Finally, from the "Template Build" dropdown, select "Ubuntu 18.04 Base". This means this build takes the latest VM build from that configuration as the input.
 
 Click Save.
 
@@ -76,19 +76,19 @@ Navigate to Build -> Configs. Click on "Ubuntu 18.04 Docker" and click "Run". Yo
 
 ## Deploy a Docker Machine
 
-Once you have a successful docker machine build, the next step is to provision a new VM with this build.
+Once you have a successful docker machine build, the next step is to provision a new VM with this build. Before you provision a new virtual machine, you will need to create some VM sizes, and a network.
 
 ### Set up VM Sizes
 
-Go to Compute -> VM Specs, and add a number of sizes that you will find useful. I tend to add a Tiny with 1CPU, 1 GB of RAM, Small with 1 CPU, 2 GB of RAM, Medium with 2 CPU, 4 GB of RAM and Large with 4 CPU, 8 GB of RAM.
+Go to Compute -> VM Specs, and add a number of sizes that you will find useful. I tend to add a Tiny with 1 CPU, 1 GB of RAM, Small with 1 CPU, 2 GB of RAM, Medium with 2 CPU, 4 GB of RAM and Large with 4 CPU, 8 GB of RAM. These sizes are entirely up to you.
 
 ### Set up a Network
 
-This step sets up a number of IP addresses that can be allocated to new VMs as a pool. Note: DHCP is currently not supported.
+This step sets up a number of IP addresses that can be allocated to new VMs as a pool. Note: DHCP is currently not supported in HaaS, instead, IP addresses are allocated from a static pool.
 
 Navigate to Network, then click New.
 
-Enter in a name, I use "default", then the starting and ending IP range, along with subnet mask, gateway, and DNS server settings for each machine. Click Save.
+Enter in a name, I use "default" since I only ever have one of these defined, then enter a starting IP and ending IP range, along with subnet mask, gateway, and DNS server settings for each machine. Click Save.
 
 Click Populate, and all the IP addresses in the range will appear with no VM associated.
 
