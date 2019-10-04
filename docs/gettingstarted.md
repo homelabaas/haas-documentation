@@ -53,9 +53,9 @@ Enter in the vcenter details. The URL is just the IP or domain name of the serve
 
 Configure the application to connect to Minio, by entering in a url. If you are using the bootstrap application, you can enter in your local IP, such as: `http://10.0.0.10:9000` with __testaccesskey__ as the Access Key and __testsecretkey__ as the secret key. The Content Bucket is called __content__ by default.
 
-### Connect to PowerDNS (optional)
+### Connect to MiniDNS (optional)
 
-This is optional, and you will probably set this up later as this requires a running PowerDNS server. This is to provide integration with Power DNS for DNS automation. To set this up, type in the url of the Power DNS API, such as `http://10.0.0.15:8081`. The the API key, and then the domain name that you want all your entries to be stored under.
+This is optional, and you will probably set this up later as this requires a running MiniDNS server. Once connected, this will automatically manage your DNS. You will need to provide the API endpoint of MiniDNS to interact with, plus it's IP address for use with network configuration services.
 
 ## Next Steps
 

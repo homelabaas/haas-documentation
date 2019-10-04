@@ -104,50 +104,24 @@ Once the user data dropdown is selected, the actual user data for the instance w
 
 When it is ready, you will get immediate feedback in the UI.
 
-## Deploy PowerDNS
+## Deploy MiniDNS
 
-The PowerDNS machine setup requires that you have built the base VM image with Docker. Using that base machine and some helper scripts, you can easily provision a machine that runs PowerDNS all set up for you, out of the box.
+Mini DNS is very simple to run, just start a machine up and run the `homelabaas/dns-api` container, exposing the correct ports.
 
-Once the Ubuntu docker machine is built, create a VM and in the user-data field, select PowerDNS.
+There is a User Data selection built into Homelab as a Service that will create a docker machine and install Mini DNS for you. Create a new VM and select "Mini DNS" in the "User Data" dropdown.
 
-It takes a little bit of time to install, the VM status will change to "Ready" when it is ready to use.
+## Hook up MiniDNS
 
-Say your PowerDNS server is on 10.0.0.1, browse to: http://10.0.0.1/setup.
+Now we can tell HaaS where to find Mini DNS. Go to the Admin -> Settings page.
 
-In the Database Configuration, enter:
-Database server Host: database
-Username: root
-Password: secretrootpassword
-Database Name: pdnsadmin
+Say Mini DNS is running on a sever with the IP address of 10.0.0.1.
 
-Click Next
+In the URL, enter the HTTP address of the API that controles Mini DNS. Using the IP address above, it would be: `http://10.0.0.1/api`.
 
-Enter in what details you would like for the Admin name, email address and password.
+For the DNS IP Address, just type in it's IP address, ie `10.0.0.1`.
 
-Enter the following fields:
-Host master: authoritative
-Port: 8081
-Zone Path: api/v1/servers/localhost/zones
-Protocol: http
-Api Key: powerdnsapikey
-Hostmaster record: testhostmaster
+For the default domain, enter in a domain name you want all your machines to be added to, for example, `myprivatedomain.com`.
 
-Click Next and now you can log into the admin console using the credentials you just provided.
+## Using MiniDNS
 
-## Hook up PowerDNS
-
-Now we can tell HaaS where to find PowerDNS. Go to the Admin -> Settings page.
-
-In the URL, say the IP address of your PowerDNS server is 10.0.0.1, type in: http://10.0.0.1:8081
-
-The default API key is powerdnsapikey
-
-It's up to you what domain name to use in "Default Domain". I have an internal domain name I like to use for all my VMs. This is the domain name they are all created in.
-
-Click Save to check the connection works OK.
-
-## Using PowerDNS
-
-The last part is a bit tricky as it depends on your home setup, as you now want to make sure that your local network uses this PowerDNS server. There are a few ways you can do this.
-
-The easiest way is to add the address of this server into your local DNS server settings. If you run your own DNS server, add it to the first forward zone.
+You will now need to tell your servers to point to Mini DNS for all DNS resolution. Ensure the DNS name server on all machines is the IP address of the Mini DNS server.
