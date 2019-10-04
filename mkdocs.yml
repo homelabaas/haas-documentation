@@ -4,5 +4,6 @@ nav:
 - Getting Started: gettingstarted.md
 - Walkthrough: walkthrough.md
 - Docker Swarm: swarm.md
+- Mini DNS: minidns.md
 - About: about.md
 theme: readthedocs
